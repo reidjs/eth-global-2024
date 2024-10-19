@@ -1,0 +1,16 @@
+{
+  "name": "frames.hazybridge.com",
+  "version": "1.0.0",
+  "description": "https://debugger.framesjs.org/?url=http%3A%2F%2Fframes.hazybridge.com%2F http://frames.hazybridge.com/ from parent dir run ./deploy.sh frames.hazybridge.com",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
