@@ -1,6 +1,10 @@
 import { HandlerContext } from "@xmtp/message-kit";
 
-
+function extractEthDomain(str: string): string | null {
+  const regex = /\b([a-zA-Z0-9-]+)\.eth\b/;
+  const match = str.match(regex);
+  return match ? match[1] : null;
+}
 export async function handleEns(context: HandlerContext, text: string) {
   const {
     message: {
@@ -16,8 +20,14 @@ export async function handleEns(context: HandlerContext, text: string) {
 
   console.log("Searching ENS info");
 
-  let ens_url = baseUrl + text;
+  //split content and get last word
+  let word = extractEthDomain(text);
+
+
+  let ens_url = baseUrl + word;
 
   context.send(`${ens_url}`);
 
+  
 }
+

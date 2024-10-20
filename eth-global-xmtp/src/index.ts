@@ -12,6 +12,9 @@ run(
     } = context;
 
     console.log("Received message", text);
+    console.log("Received command", command);
+    console.log("Received params", params);
+
 
     if (typeId !== "text") return;
 
@@ -21,12 +24,9 @@ run(
       await handleEns(context, text);
     } 
 
-
     else if (
-      
       text.startsWith("/send") &&
-      params.token &&
-      params.address_to &&
+      params.address &&
       params.amount
     ) {
       console.log("Sending tokens");
@@ -34,7 +34,9 @@ run(
     }
 
     else {
-      context.send("hey gm sir.");
+    console.log("text", text);
+
+      context.send("Hey! Good Morning! :)");
     }
   },
 );

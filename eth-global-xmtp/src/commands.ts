@@ -8,7 +8,7 @@ export const commands: CommandGroup[] = [
     triggers: ["/send", "@send", "@sendbot"],
     commands: [
       {
-        command: "/send [amount] [token_from] [token_to]",
+        command: "/send [amount] [address]",
         handler: handleSend,
         description: "Send Eth to your friend.",
         params: {
@@ -16,12 +16,7 @@ export const commands: CommandGroup[] = [
             default: 10,
             type: "number",
           },
-          token: {
-            default: "eth",
-            type: "string",
-            values: ["eth", "dai", "usdc", "degen"], // Accepted tokens
-          },
-          address_to: {
+          address: {
             default: "x0123",
             type: "string",
             //values: ["eth", "dai", "usdc", "degen"], // Accepted tokenss

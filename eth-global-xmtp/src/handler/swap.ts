@@ -1,5 +1,5 @@
 import { HandlerContext } from "@xmtp/message-kit";
-
+import { ethers } from "ethers";
 
 export async function handleSend(context: HandlerContext) {
   const {
@@ -8,60 +8,61 @@ export async function handleSend(context: HandlerContext) {
     },
   } = context;
 
-  const baseUrl = "ethereum:pay-0x72ea2A58a518EaF209B7D834B481DE6EBe170e2e@11155111?value=2e16";
+ 
+  const url = "https://frames-nextjs.vercel.app/frames?transaction=%20ethereum:pay-${address}@11155111?value=${amount}";
 
   switch (command) {
     case "send":
 
       console.log("Handling send command");
       // Destructure and validate parameters for the swap command
-      const { amount, token, address_to } = params;
+      const { amount, address } = params;
 
-      console.log(amount, token, address_to);
+      console.log(amount, address);
 
-      if (!amount || !token || !address_to) {
+      if (!amount || !address) {
         context.reply(
-          "Missing required parameters. Please provide amount, token_from, and token_to."
+          "Missing required parameters. Please provide amount and address"
         );
         return;
       }
       // Generate URL for the swap transaction
       console.log("Generating URL for swap transaction");
-      let url_send = generateFrameURL(baseUrl, "send", {
-        amount,
-        token,
-        address_to,
-      });
 
-      console.log(url_send);
+      //transform amount to scientific notation
 
-      const baseImgUrl = 'http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=${google.com}&qzone=1&margin=0&size=250x250&ecc=L';
-      const qrCodeUrl = baseImgUrl.replace('${DATA}', escape(url_send));
+      //transform to scientific notation, we want to have 1e18 etc
+
+    
+
+      //we take the url and replace the address and amount with the actual values
+      const qrCodeUrl = url.replace("${address}", address).replace("${amount}", convertToScientificNotation(amount));
       context.send(`${qrCodeUrl}`);
       break;
     default:
       // Handle unknown commands
       context.reply("Unknown command. Use help to see all available commands.");
   }
-}
 
-// Function to generate a URL with query parameters for transactions
-function generateFrameURL(
-  baseUrl: string,
-  transaction_type: string,
-  params: any
-) {
-  // Filter out undefined parameters
-  let filteredParams: { [key: string]: any } = {};
+  function convertToScientificNotation(num: number): string {
+    if (num === 0) return "0";
 
-  for (const key in params) {
-    if (params[key] !== undefined) {
-      filteredParams[key] = params[key];
+    // Count how many times we need to shift the decimal to the right.
+    let exponent = 18;
+    let numString = num.toString();
+    
+    // For decimals, adjust the exponent by counting the number of digits after the decimal point.
+    if (numString.includes('.')) {
+        const decimalPlaces = numString.split('.')[1].length;
+        exponent -= decimalPlaces; // Decrease exponent by the number of decimal places
+        num = num * Math.pow(10, decimalPlaces); // Shift decimal to the right
     }
-  }
-  let queryParams = new URLSearchParams({
-    transaction_type,
-    ...filteredParams,
-  }).toString();
-  return `${baseUrl}?${queryParams}`;
+
+    // Convert the number to an integer (after shifting) and append the exponent
+    return `${num}e${exponent}`;
 }
+
+}
+
+
+// /send 0.1 0x1234
