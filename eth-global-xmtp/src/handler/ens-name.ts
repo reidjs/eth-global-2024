@@ -1,4 +1,5 @@
 import { HandlerContext } from "@xmtp/message-kit";
+
 function extractEthDomain(str: string): string | null {
   const regex = /\b([a-zA-Z0-9-]+)\.eth\b/;
   const match = str.match(regex);
@@ -22,6 +23,5 @@ export async function handleEns(context: HandlerContext, text: string) {
 
   let ens_url = baseUrl + word;
 
-  // TODO: send more information back, like connected social accounts
   context.send(`${ens_url}`);
 }
