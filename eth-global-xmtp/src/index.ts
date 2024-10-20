@@ -26,7 +26,7 @@ run(
 
     else if (
       text.startsWith("/send") &&
-      params.address &&
+      params.name &&
       params.amount
     ) {
       console.log("Sending tokens");

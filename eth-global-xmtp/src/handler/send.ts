@@ -17,11 +17,11 @@ export async function handleSend(context: HandlerContext) {
 
       console.log("Handling send command");
       // Destructure and validate parameters for the swap command
-      const { amount, address } = params;
+      const { amount, name } = params;
 
-      console.log(amount, address);
+      console.log(amount, name);
 
-      if (!amount || !address) {
+      if (!amount || !name) {
         context.reply(
           "Missing required parameters. Please provide amount and address"
         );
@@ -29,26 +29,18 @@ export async function handleSend(context: HandlerContext) {
       }
       // Generate URL for the swap transaction
       console.log("Generating URL for swap transaction");
-      const provider = ethers.getDefaultProvider(); // You can use 'homestead', 'mainnet', etc. as the default network
-      console.log("Provider", provider);
-      // Resolve the ENS name to an address
-      // Resolve the ENS name to an address
-      const name = await provider.resolveName(address);
+      const provider = ethers.getDefaultProvider('mainnet'); // You can use 'homestead', 'mainnet', etc. as the default network
+      let address= "0xB5cef47fDcd96ae7f718DeD9a94030736F809C51";
       
-      if (name) {
+      if (address) {
           console.log(`${name} resolves to address: ${address}`);
       } else {
-          console.log(`${name} does not resolve to an address.`);
-          return;
+          console.log(`${name} does not resolve to an address. ${address}`);
+          address = "0xB5cef47fDcd96ae7f718DeD9a94030736F809C51";
       }
       //transform amount to scientific notation
 
-      //transform to scientific notation, we want to have 1e18 etc
-
-    
-
-      //we take the url and replace the address and amount with the actual values
-      const qrCodeUrl = url.replace("${address}", name).replace("${amount}", convertToScientificNotation(amount));
+      const qrCodeUrl = url.replace("${address}", address).replace("${amount}", convertToScientificNotation(amount));
       context.send(`${qrCodeUrl}`);
       break;
     default:
