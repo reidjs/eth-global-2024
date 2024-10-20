@@ -1,5 +1,5 @@
 import type { CommandGroup } from "@xmtp/message-kit";
-import { handleSend } from "./handler/swap.js";
+import { handleSend } from "./handler/send.js";
 import { handleEns } from "./handler/ens-name.js";
 export const commands: CommandGroup[] = [
   {
@@ -8,7 +8,7 @@ export const commands: CommandGroup[] = [
     triggers: ["/send", "@send", "@sendbot"],
     commands: [
       {
-        command: "/send [amount] [address]",
+        command: "/send [address] [amount]",
         handler: handleSend,
         description: "Send Eth to your friend.",
         params: {

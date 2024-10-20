@@ -1,5 +1,5 @@
 import { run, HandlerContext } from "@xmtp/message-kit";
-import { handleSend } from "./handler/swap.js";
+import { handleSend } from "./handler/send.js";
 import { handleEns } from "./handler/ens-name.js";
 
 run(

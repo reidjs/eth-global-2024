@@ -1,6 +1,7 @@
 import { HandlerContext } from "@xmtp/message-kit";
 import { ethers } from "ethers";
 
+
 export async function handleSend(context: HandlerContext) {
   const {
     message: {
@@ -28,7 +29,18 @@ export async function handleSend(context: HandlerContext) {
       }
       // Generate URL for the swap transaction
       console.log("Generating URL for swap transaction");
-
+      const provider = ethers.getDefaultProvider(); // You can use 'homestead', 'mainnet', etc. as the default network
+      console.log("Provider", provider);
+      // Resolve the ENS name to an address
+      // Resolve the ENS name to an address
+      const name = await provider.resolveName(address);
+      
+      if (name) {
+          console.log(`${name} resolves to address: ${address}`);
+      } else {
+          console.log(`${name} does not resolve to an address.`);
+          return;
+      }
       //transform amount to scientific notation
 
       //transform to scientific notation, we want to have 1e18 etc
@@ -36,7 +48,7 @@ export async function handleSend(context: HandlerContext) {
     
 
       //we take the url and replace the address and amount with the actual values
-      const qrCodeUrl = url.replace("${address}", address).replace("${amount}", convertToScientificNotation(amount));
+      const qrCodeUrl = url.replace("${address}", name).replace("${amount}", convertToScientificNotation(amount));
       context.send(`${qrCodeUrl}`);
       break;
     default:
