@@ -75,7 +75,6 @@
       font-size: 1rem;
       max-width: 800px;
       margin: 0 auto;
-      font-style: italic;
     }
 
     .stylized-text {
@@ -109,6 +108,15 @@
       max-width: 800px;
       margin: 0 auto;
       text-align: center;
+    }
+
+    ul {
+      margin-top: 10px;
+    }
+
+    ul li {
+      font-size: 20px;
+      text-align: left;
     }
 
     @media (min-width: 768px) {
@@ -147,28 +155,47 @@
     </section>
 
     <section class="description">
-      <h2 class="stylized-text">Dynamic previews for ENS in XMTP</h2>
-      <iframe width="315" height="480" src="https://www.youtube.com/embed/KwSXratMFeE?si=8oFvjEsIF31N1ecd"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-      </iframe>
+      <h2 class="stylized-text">Dynamic previews for ENS in any XMTP client</h2>
+      <div>
+        <iframe width="315" height="480" src="https://www.youtube.com/embed/KwSXratMFeE?si=8oFvjEsIF31N1ecd"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+        <ul>
+          <li>When Open Frame parses a ".eth" name in an xmtp message, it returns a Frame preview of the account</li>
+          <li>The Frame is dynamic and can be used to directly interact with the account through a wallet provider</li>
+          <li>Works in any XMTP client</li>
+        </ul>
+      </div>
 
     </section>
 
     <section class="description">
-      <h2 class="stylized-text">Create QR code transactions in XMTP</h3>
+      <h2 class="stylized-text">Create QR code transactions in XMTP</h2>
+      <div>
+
         <iframe width="315" height="480" src="https://www.youtube.com/embed/kw69OqKw_AQ" title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen>
         </iframe>
+        <ul>
+          <li>Our bot supports the slash command "/send" which creates a QR code</li>
+          <li>Works in any XMTP client</li>
+        </ul>
+      </div>
     </section>
     <section class="description">
       <h3>Why?</h3>
-      <p>In XMTP-based chat apps, you have to leave the app to look up ENS account information or start a transaction.
-        Our bot integrates ENS with XMTP, providing link previews whenever a ".eth" name is mentioned. Now, you can view
-        ENS details and interact with them directly from any XMTP chat app.</p>
+      <ul>
+        <li>Less context switching</li>
+        <li>Improves XMTP user experience and conveneince</li>
+        <li>Improves trust indicators in XMTP</li>
+      </ul>
+    </section>
+    <section class="description">
+      <p>Created by Reid JS and Alex T for Eth Global 2024</p>
     </section>
   </div>
 </body>
