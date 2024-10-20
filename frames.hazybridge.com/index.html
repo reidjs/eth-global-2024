@@ -4,40 +4,173 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="Your Title Here">
-  <meta property="og:description" content="Your description here">
-  <meta property="og:image" content="https://yourwebsite.com/image.jpg">
-  <meta property="og:url" content="https://yourwebsite.com">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Your Title Here">
-  <meta name="twitter:description" content="Your description here">
-  <meta name="twitter:image" content="https://yourwebsite.com/image.jpg">
-  <meta name="of:accepts:xmtp" content="2024-02-09">
-  <meta name="of:version" content="vNext">
-  <title>Your Page Title</title>
-  <title>Document</title>
+  <title>Open Frame</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      margin: 0;
+      background: linear-gradient(90deg, rgb(236, 125, 190), rgb(125, 164, 240));
+
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 50px 20px;
+      /* background-color: #0056b3; */
+      color: white;
+      background-image: url('croppedimg.jpeg');
+      background-size: cover;
+      /* Ensures the image covers the entire section */
+      background-position: center;
+      /* Centers the image */
+      background-repeat: no-repeat;
+      min-height: 300px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .description {
+      padding: 40px 20px;
+      margin: 40px 0;
+      background-color: #fff;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .description h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .description p {
+      font-size: 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    .stylized-text {
+      font-size: 3rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, rgb(236, 125, 190), rgb(125, 164, 240));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      display: inline-block;
+      padding: 10px 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .info-section {
+      padding: 40px 20px;
+      background-color: #f0f4f8;
+      border-radius: 8px;
+    }
+
+    .info-section h3 {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .info-section p {
+      font-size: 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero p {
+        font-size: 1.5rem;
+      }
+
+      .description h2 {
+        font-size: 2.5rem;
+      }
+
+      .description p {
+        font-size: 1.2rem;
+      }
+
+      .info-section h3 {
+        font-size: 2rem;
+      }
+
+      .info-section p {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  hello world
-  <script>
-    const path = window.location.pathname.substring(1); // Removes the leading slash
+  <div class="container">
+    <section class="hero">
+      <!-- <h1>Welcome to Open Frame</h1> -->
+      <!-- <p>Shaping the future of open-source frames, designed with developers in mind.</p> -->
+    </section>
 
-    console.log('path', path);
-    // Create or update the meta tag based on the path
-    const metaTag = document.createElement('meta');
-    metaTag.name = "of:image"; // Meta tag name becomes the path (e.g., "foo")
-    metaTag.content = `https://ens-og-image.ens-cf.workers.dev/name/${path}.eth`; // Content also becomes the path (e.g., "foo")
+    <section class="description">
+      <h2 class="stylized-text">Dynamic previews for ENS in XMTP</h2>
+      <iframe width="315" height="480" src="https://www.youtube.com/embed/KwSXratMFeE?si=8oFvjEsIF31N1ecd"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
 
-    // Append to the head
-    document.head.appendChild(metaTag);
+    </section>
 
-    // Optionally, update the document title as well
-    document.title = `${path.charAt(0).toUpperCase() + path.slice(1)} Page`;
-
-    // For debugging, you can log the meta tag
-    console.log(`Meta tag created: <meta name="${path}" content="${path}">`);
-  </script>
+    <section class="description">
+      <h2 class="stylized-text">Create QR code transactions in XMTP</h3>
+        <iframe width="315" height="480" src="https://www.youtube.com/embed/kw69OqKw_AQ" title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+    </section>
+    <section class="description">
+      <h3>Why Choose Open Frame?</h3>
+      <p>Open Frame offers a flexible architecture, vast community support, and is built on modern development
+        principles. Our focus on ease of use and extensibility makes Open Frame a powerful choice for developers who
+        want to get up and running quickly.</p>
+    </section>
+  </div>
 </body>
 
 </html>

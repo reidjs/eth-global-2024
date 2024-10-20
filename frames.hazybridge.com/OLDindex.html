@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Your Title Here">
+  <meta property="og:description" content="Your description here">
+  <meta property="og:image" content="https://yourwebsite.com/image.jpg">
+  <meta property="og:url" content="https://yourwebsite.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Your Title Here">
+  <meta name="twitter:description" content="Your description here">
+  <meta name="twitter:image" content="https://yourwebsite.com/image.jpg">
+  <meta name="of:accepts:xmtp" content="2024-02-09">
+  <meta name="of:version" content="vNext">
+  <title>Your Page Title</title>
+  <title>Document</title>
+</head>
+
+<body>
+  hello world
+  <script>
+    const path = window.location.pathname.substring(1); // Removes the leading slash
+
+    console.log('path', path);
+    // Create or update the meta tag based on the path
+    const metaTag = document.createElement('meta');
+    metaTag.name = "of:image"; // Meta tag name becomes the path (e.g., "foo")
+    metaTag.content = `https://ens-og-image.ens-cf.workers.dev/name/${path}.eth`; // Content also becomes the path (e.g., "foo")
+
+    // Append to the head
+    document.head.appendChild(metaTag);
+
+    // Optionally, update the document title as well
+    document.title = `${path.charAt(0).toUpperCase() + path.slice(1)} Page`;
+
+    // For debugging, you can log the meta tag
+    console.log(`Meta tag created: <meta name="${path}" content="${path}">`);
+  </script>
+</body>
+
+</html>
