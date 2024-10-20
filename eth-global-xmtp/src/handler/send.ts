@@ -1,5 +1,14 @@
 import { HandlerContext } from "@xmtp/message-kit";
 import { ethers } from "ethers";
+import { createPublicClient, http } from 'viem'
+import { mainnet } from 'viem/chains'
+import { normalize } from 'viem/ens'
+ 
+
+export const publicClient = createPublicClient({
+  chain: mainnet,
+  transport: http(),
+})
 
 
 export async function handleSend(context: HandlerContext) {
@@ -27,20 +36,22 @@ export async function handleSend(context: HandlerContext) {
         );
         return;
       }
+      
       // Generate URL for the swap transaction
       console.log("Generating URL for swap transaction");
-      const provider = ethers.getDefaultProvider('mainnet'); // You can use 'homestead', 'mainnet', etc. as the default network
-      let address= "0xB5cef47fDcd96ae7f718DeD9a94030736F809C51";
+      const address = await publicClient.getEnsAddress({
+        name: normalize(name),
+      })
       
       if (address) {
           console.log(`${name} resolves to address: ${address}`);
       } else {
           console.log(`${name} does not resolve to an address. ${address}`);
-          address = "0xB5cef47fDcd96ae7f718DeD9a94030736F809C51";
+          //address = "0xB5cef47fDcd96ae7f718DeD9a94030736F809C51";
       }
       //transform amount to scientific notation
-
-      const qrCodeUrl = url.replace("${address}", address).replace("${amount}", convertToScientificNotation(amount));
+      console.log(address);
+      const qrCodeUrl = url.replace("${address}", String(address)).replace("${amount}", convertToScientificNotation(amount));
       context.send(`${qrCodeUrl}`);
       break;
     default:
