@@ -33,8 +33,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     other: {
       "of:image": qrImageUrl,
       "of:image:alt": `${name} QR Code`,
-      "of:image:width": 100,
-      "of:image:height": 100,
+      "of:image:width": 10,
+      "of:image:height": 10,
     },
   };
 }
